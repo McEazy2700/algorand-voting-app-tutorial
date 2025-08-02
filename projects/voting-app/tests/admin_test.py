@@ -12,6 +12,16 @@ def context() -> Iterator[AlgopyTestContext]:
         yield ctx
 
 
+def test_update(context: AlgopyTestContext) -> None:
+    contract = Admin()
+    contract.update()
+
+
+def test_delete(context: AlgopyTestContext) -> None:
+    contract = Admin()
+    contract.delete()
+
+
 def test_hello(context: AlgopyTestContext) -> None:
     # Arrange
     dummy_input = context.any.string(length=10)

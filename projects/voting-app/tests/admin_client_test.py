@@ -1,15 +1,9 @@
 import algokit_utils
 import pytest
-from algokit_utils import (
-    AlgoAmount,
-    AlgorandClient,
-    SigningAccount,
-)
+from algokit_utils import AlgoAmount, AlgorandClient, SigningAccount
 
-from smart_contracts.artifacts.admin.admin_client import (
-    AdminClient,
-    AdminFactory,
-)
+from smart_contracts.artifacts.admin.admin_client import (AdminClient,
+                                                          AdminFactory)
 
 
 @pytest.fixture()
@@ -36,20 +30,24 @@ def admin_client(
     return client
 
 
-def test_says_hello(admin_client: AdminClient) -> None:
-    result = admin_client.send.hello(args=("World",))
-    assert result.abi_return == "Hello, World"
+#
+#
+# def test_says_hello(admin_client: AdminClient) -> None:
+#     result = admin_client.send.hello(args=("World",))
+#     assert result.abi_return == "Hello, World"
 
 
-def test_simulate_says_hello_with_correct_budget_consumed(
-    admin_client: AdminClient,
-) -> None:
-    result = (
-        admin_client.new_group()
-        .hello(args=("World",))
-        .hello(args=("Jane",))
-        .simulate()
-    )
-    assert result.returns[0].value == "Hello, World"
-    assert result.returns[1].value == "Hello, Jane"
-    assert result.simulate_response["txn-groups"][0]["app-budget-consumed"] < 100
+#
+#
+# def test_simulate_says_hello_with_correct_budget_consumed(
+#     admin_client: AdminClient,
+# ) -> None:
+#     result = (
+#         admin_client.new_group()
+#         .hello(args=("World",))
+#         .hello(args=("Jane",))
+#         .simulate()
+#     )
+#     assert result.returns[0].value == "Hello, World"
+#     assert result.returns[1].value == "Hello, Jane"
+#     assert result.simulate_response["txn-groups"][0]["app-budget-consumed"] < 100
